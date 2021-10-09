@@ -1,0 +1,24 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Submission {
+  id: String!
+  createDate: String!
+  updateDate: String!
+  repositoryUrl: String!
+  status: String!
+}
+
+type Query {
+  getAllSubmissions(skip: Float!, take: Float!, dateEnd: String!, dateStart: String!, status: String!): [Submission!]!
+  getSubmissionById(id: String!): Submission!
+}
+
+type Mutation {
+  submission(submission: CreateSubmissionDTO!): Submission!
+}
+
+input CreateSubmissionDTO {
+  repositoryUrl: String!
+}
