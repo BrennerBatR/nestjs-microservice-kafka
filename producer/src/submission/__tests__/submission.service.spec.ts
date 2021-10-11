@@ -2,21 +2,17 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import {
-  mockedmicroservice,
   mockedCreateSubmissionDTO,
   mockedSubmission,
   MockType,
   repositoryMockFactory,
 } from '../../../test/mock';
 import { SubmissionService } from '../submission.service';
-import { Submission, SubmissionStatus } from '../entity/submission.entity';
+import { Submission } from '../entity/submission.entity';
 import { CreateSubmissionDTO } from '../submission.dto';
-import { microserviceService } from '../../microservice/microservice.service';
-import { microservice } from '../../microservice/entity/microservice.entity';
 
 describe('SubmissionService', () => {
   let service: SubmissionService;
-  let microserviceService: microserviceService;
   let repositoryMock: MockType<Repository<Submission>>;
 
   beforeAll(async () => {
@@ -27,19 +23,11 @@ describe('SubmissionService', () => {
           provide: getRepositoryToken(Submission),
           useFactory: repositoryMockFactory,
         },
-        microserviceService,
-        {
-          provide: getRepositoryToken(microservice),
-          useFactory: repositoryMockFactory,
-        },
       ],
     }).compile();
 
     service = module.get<SubmissionService>(SubmissionService);
-    microserviceService = module.get<microserviceService>(microserviceService);
     repositoryMock = module.get(getRepositoryToken(Submission));
-
-    jest.spyOn(microserviceService, 'findOne').mockResolvedValue(mockedmicroservice);
   });
 
   it('should be defined', () => {

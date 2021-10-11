@@ -1,4 +1,3 @@
-import { microservice } from '../../src/microservice/entity/microservice.entity';
 import {
   Submission,
   SubmissionStatus,
@@ -20,23 +19,14 @@ export const mockedImageHelper = {
   thumb128Url: 'string',
 };
 
-export const mockedmicroservice = {
-  id: uuidv4(),
-  description: 'description',
-  title: 'title',
-} as microservice;
-
 export const mockedSubmission = {
   id: uuidv4(),
   repositoryUrl: 'https://github.com/nestjs/backend-microservice',
   status: SubmissionStatus.Pending,
-  grade: Math.floor(Math.random() * 10) + 1,
-  microservice: mockedmicroservice,
 } as Submission;
 
 export const mockedCreateSubmissionDTO = {
   repositoryUrl: 'https://github.com/nestjs/backend-microservice',
-  microserviceId: mockedmicroservice.id,
 } as CreateSubmissionDTO;
 
 // @ts-ignore
