@@ -25,6 +25,8 @@ export class CorrectLessonService {
       correctLessonResponse.status = 'Correct';
     }
 
+    console.log('correctLesson | correctLessonResponse', correctLessonResponse);
+
     return correctLessonResponse;
   }
 }
