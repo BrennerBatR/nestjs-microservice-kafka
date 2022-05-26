@@ -51,6 +51,7 @@ export class SubmissionResolver implements OnModuleInit {
   }
 
   async getCorrection(submission: Submission) {
+    console.log('getCorrection | start');
     const correctLessonMessage: CorrectLessonMessage = {
       value: {
         submissionId: submission.id,
@@ -58,6 +59,7 @@ export class SubmissionResolver implements OnModuleInit {
       },
     };
 
+    console.log('getCorrection | correctLessonMessage', correctLessonMessage);
     const result: CorrectLessonResponse = await lastValueFrom(
       this.clientKafka.send(this.pattern, {
         key: correctLessonMessage.value.submissionId,
